@@ -10,7 +10,11 @@ import (
 // Creating new type 'deck' which is a slice of strings
 
 // All variables of type 'deck' now have access to the methods of type 'deck'
-type deck [][2]string
+type card struct {
+	value string
+	suit  string
+}
+type deck []card
 
 func newDeck() deck {
 	cards := deck{}
@@ -19,7 +23,7 @@ func newDeck() deck {
 
 	for _, suit := range suits {
 		for _, value := range values {
-			cards = append(cards, [2]string{value, suit})
+			cards = append(cards, card{value, suit})
 		}
 	}
 
@@ -27,8 +31,8 @@ func newDeck() deck {
 }
 
 func (cardsDeck deck) print() {
-	for index, card := range cardsDeck {
-		fmt.Println(index, card)
+	for index, _card := range cardsDeck {
+		fmt.Println(index, _card)
 	}
 }
 
@@ -41,8 +45,8 @@ func deal(cardsDeck deck, handSize int) (deck, deck) {
 
 func toString(cardsDeck deck) string {
 	var cardsAsString string
-	for index, card := range cardsDeck {
-		cardsAsString = cardsAsString + strings.Join(card[:], " of ")
+	for index, _card := range cardsDeck {
+		cardsAsString = cardsAsString + _card.value + " of " + _card.suit
 
 		if index < len(cardsDeck)-1 {
 			cardsAsString = cardsAsString + ","
@@ -72,9 +76,9 @@ func newDeckFromFile(filename string) deck {
 
 	cards := strings.Split(string(data[:]), ",")
 
-	for _, card := range cards {
-		cardInfo := strings.Split(card, " of ")
-		cardsDeck = append(cardsDeck, [2]string{cardInfo[0], cardInfo[1]})
+	for _, _card := range cards {
+		cardInfo := strings.Split(_card, " of ")
+		cardsDeck = append(cardsDeck, card{cardInfo[0], cardInfo[1]})
 	}
 
 	return cardsDeck

@@ -9,16 +9,18 @@ import (
 
 func TestNewDeck(handler *testing.T) {
 	cardsDeck := newDeck()
+	firstCard := card{"A", "Spades"}
+	lastCard := card{"K", "Clubs"}
 
 	if len(cardsDeck) != 52 {
 		handler.Errorf("Expected 'cardsDeck' to have 52 cards but counted %v", len(cardsDeck))
 	}
 
-	if cardsDeck[0] != [2]string{"A", "Spades"} {
+	if cardsDeck[0] != firstCard {
 		handler.Errorf("Expected the first card 'cardsDeck' to be [A Spades] but got %v", cardsDeck[0])
 	}
 
-	if cardsDeck[len(cardsDeck)-1] != [2]string{"K", "Clubs"} {
+	if cardsDeck[len(cardsDeck)-1] != lastCard {
 		handler.Errorf(
 			"Expected the first card 'cardsDeck' to be [K Clubs] but got %v",
 			cardsDeck[len(cardsDeck)-1],
