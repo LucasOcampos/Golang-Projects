@@ -23,6 +23,7 @@ func main() {
 	//card = "Ace of Spades"
 
 	deckOfCards := newDeck()
-	deckOfCards.shuffle()
+	hand := deckOfCards.deal(3)
 	deckOfCards.print()
+	hand.print()
 }

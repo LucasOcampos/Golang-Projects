@@ -36,11 +36,11 @@ func (cardsDeck deck) print() {
 	}
 }
 
-func deal(cardsDeck deck, handSize int) (deck, deck) {
-	hand := cardsDeck[len(cardsDeck)-handSize:]
-	cardsDeck = cardsDeck[:len(cardsDeck)-handSize]
+func (deckPointer *deck) deal(handSize int) deck {
+	hand := (*deckPointer)[len((*deckPointer))-handSize:]
+	*deckPointer = (*deckPointer)[:len((*deckPointer))-handSize]
 
-	return cardsDeck, hand
+	return hand
 }
 
 func toString(cardsDeck deck) string {
