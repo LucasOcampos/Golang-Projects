@@ -96,7 +96,7 @@ func TestDeal(handler *testing.T) {
 	originalDeckLength := len(cardsDeck)
 	handSize := rand.Intn(originalDeckLength)
 
-	cardsDeck, hand := deal(cardsDeck, handSize)
+	hand := cardsDeck.deal(handSize)
 
 	if len(cardsDeck) != originalDeckLength-handSize {
 		handler.Errorf(
